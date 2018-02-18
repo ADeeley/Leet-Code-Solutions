@@ -1,0 +1,98 @@
+import time
+
+class Solution:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        results = []
+        for i in range (len(nums)):
+            for j in range(i+1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    results.append(i)
+                    results.append(j)
+                    return results
+        return results
+
+class SolutionSuperiore:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        nums.sort()
+        results = []
+        for i in range (len(nums)):
+            if nums[i] + nums[-1] < target:
+                continue
+            for j in range(i+1, len(nums)):
+                if nums[i] + nums[j] == target:
+                    results.append(i)
+                    results.append(j)
+                    return results
+               
+
+        return results
+
+class SolutionBinary:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        nums.sort()
+        results = []
+        for i in range (len(nums)):
+            tempNums = nums[i+1:]
+            mid = len(tempNums)//2
+            low = 0
+            high = len(tempNums)-1
+            while mid > low and mid < high:
+                print("i:", i, "low: ", low, " mid: ", mid, " high: ", high, " sum: ", nums[i], tempNums[mid])
+                if nums[i] + tempNums[mid] > target:
+                    high = mid - 1
+                    mid = (low + high)//2
+                elif nums[i] + tempNums[mid] < target:
+                    low = mid + 1
+                    mid = (low + high)//2
+                else:
+                    results.append(i)
+                    results.append(mid + i)
+                    return results
+        return results
+
+testArr = [5, 2, 1, 1, 1, 
+           3, 4, 5, 2, 1, 
+           2, 3, 5, 5, 2,
+           0, 1, 1, 3, 4, 
+           5, 2, 1, 7, 3, 
+           5, 7, 9]
+"""
+[0, 1, 1, 1, 1, 
+ 1, 1, 1, 2, 2, 
+ 2, 2, 2, 3, 3, 
+ 3, 3, 4, 4, 5,
+ 5, 5, 5, 5, 5, 
+ 7, 7, 9]
+ """
+for i in range (len(testArr)):
+    for j in range(i+1, len(testArr)):
+        print(testArr[i] + testArr[j])
+        
+start = time.clock()
+s = Solution()
+print(s.twoSum(testArr, 16), " time elapsed: ", time.clock())
+
+start = time.clock()
+ss = Solution()
+print(ss.twoSum(testArr, 16), " time elapsed: ", time.clock() - start)
+
+start = time.clock()
+sb = SolutionBinary()
+print(sb.twoSum(testArr, 16), " time elapsed: ", time.clock() - start)
+testArr.sort()
+print(testArr)
