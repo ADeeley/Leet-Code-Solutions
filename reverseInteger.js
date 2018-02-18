@@ -9,18 +9,17 @@ function reverse(x) {
         stringNum = stringNum.slice(1);
     }
 
-    stringNum = stringNum.split('').reverse().join('');
-    let result = +stringNum;
+    let result = +stringNum.split('').reverse().join('');
     
-    if (result > maxInt || result < minInt) {
-        return 0;
-    }
-
     if (isMinus) {
         result *= -1;
     }
 
-    return result
+    if (result > maxInt || result < minInt) {
+        return 0;
+    } else {
+        return result
+    }
 }
 
 console.log(reverse(123))
@@ -28,6 +27,6 @@ console.log(reverse(-123))
 console.log(reverse(120))
 console.log(reverse(1))
 console.log(reverse(0))
-console.log(reverse(4294967296))
+console.log(reverse(494967296))
 console.log(reverse(-4294967296))
 console.log(reverse(42949000067296))
