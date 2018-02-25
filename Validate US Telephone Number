@@ -1,0 +1,10 @@
+
+/**
+ * Validates USA telephone numbers;
+ * @param {string} str
+ * @return {boolean}
+ */
+function telephoneCheck(str) {
+  var re = /^\+?1?\s?((\(\d{3}\))|(\d{3}))\s?\-?(\d{3}\s?\-?)(\d{4}\s?\-?)$/
+  return re.test(str);
+}
