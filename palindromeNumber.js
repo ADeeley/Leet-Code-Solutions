@@ -1,8 +1,5 @@
 function isPalindrome(x) {
     x = String(x);
-    if (x[0] ==='-') {
-        x = x.slice(1);
-    }
 
     for (let i = 0; i < Math.floor(x.length / 2); i++) {
         if (x[i] !== x[x.length - (i + 1)]) {
